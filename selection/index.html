@@ -1,13 +1,25 @@
-<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#245e49"><title>番茄田間選拔記錄器 v1.5.1</title><style>
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#245e49"><title>番茄田間選拔記錄器 v1.5.2</title><style>
 :root{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif;color:#20332b;background:#f2f5f2}*{box-sizing:border-box}body{margin:0}header{position:sticky;top:0;background:#245e49;color:#fff;padding:12px 16px;z-index:5}header strong{font-size:20px}header small{display:block;opacity:.88;margin-top:3px}main{max-width:800px;margin:auto;padding:12px 12px 90px}section,.panel{background:#fff;border:1px solid #d9e3db;border-radius:15px;padding:16px;margin-bottom:12px}h2{margin:0 0 12px;font-size:21px}h3{font-size:17px;margin:18px 0 9px}.muted{color:#617369;font-size:14px;line-height:1.6}.hide{display:none!important}button{font:inherit;border:1px solid #b9c9bf;background:white;color:#1e4937;border-radius:12px;padding:13px 15px;min-height:48px;font-weight:650;cursor:pointer}button.primary{background:#246b4d;border-color:#246b4d;color:#fff}button.big{min-height:66px;font-size:19px;width:100%;margin:6px 0}button.warn{color:#963e1c;border-color:#e5c9b9}button:disabled{opacity:.4}input,textarea{font:inherit;border:1px solid #bccbc1;border-radius:10px;padding:12px;width:100%;background:#fff;color:#20332b;min-height:48px}textarea{min-height:90px}label{display:block;font-weight:650;margin:12px 0 6px}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.bar{display:flex;align-items:center;justify-content:space-between;gap:8px}.bar button{flex:0 0 auto}.tag{display:inline-block;background:#e7f0e8;border-radius:100px;padding:5px 10px;font-size:13px}.item{border:1px solid #e0e9e2;border-radius:12px;padding:12px;margin:9px 0}.item button{margin:4px}.choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.choice button{min-height:55px;padding:8px}.choice button.active{background:#d5eadd;border:2px solid #23734e}.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.three input{text-align:center}.sticky{position:fixed;bottom:0;left:0;right:0;display:flex;background:#fff;padding:8px max(8px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom));box-shadow:0 -2px 12px #0002;gap:7px;z-index:5}.sticky button{flex:1;font-size:14px;padding:10px 5px}#camera{width:100%;max-height:50vh;background:#182820;border-radius:12px}#toast{position:fixed;bottom:86px;left:12px;right:12px;background:#183b2b;color:white;padding:12px;border-radius:10px;display:none;z-index:9;text-align:center}.note{background:#f1f6f2;padding:12px;border-radius:10px;margin:10px 0}.danger{color:#a53e26}.history{border-left:3px solid #d4e5d9;margin:10px 0;padding:8px 12px}.sub{font-size:13px;color:#607266}.section-title{font-weight:750;font-size:18px}a{color:#1b6547}@media print{header,.sticky,.bar button,#mapPrint,#mapExcel,#mapBack,main>section:not(#fieldmap),#fieldmap>p{display:none!important}main{max-width:none;padding:0}#fieldmap{display:block!important;border:0}#mapRows .panel{break-inside:avoid;page-break-inside:avoid}#mapRows .item{margin:3px 0;padding:5px;font-size:12px}}@media(max-width:420px){header strong{font-size:18px}main{padding:9px 9px 90px}.panel,section{padding:12px}}
 #unsavedDialog{border:1px solid #a5b9a9;border-radius:16px;max-width:min(92vw,440px);padding:22px;box-shadow:0 8px 40px #0005}#unsavedDialog::backdrop{background:#0007}#unsavedDialog .row{margin-top:16px}#unsavedDialog button{flex:1} .plant-preview{margin:8px 0 12px 12px;border-left:4px solid #b9d6c5;padding:10px;background:#f5f9f6;border-radius:8px}.plant-preview .item{background:white}
-</style><script defer src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script></head><body><header><strong>🍅 番茄田間選拔記錄器 v1.5.1</strong><small>掃 QR → 查看／調查 → 選拔下一株｜離線本機資料</small></header><main>
+
+#traitFields .trait-heading{margin:13px 0 6px;font-size:15px}
+#traitFields .trait-choice{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:5px}
+#traitFields .trait-choice button,#traitFields .trait-matrix button{min-width:0;min-height:44px;padding:7px 2px;border-radius:9px;font-size:clamp(12px,3.5vw,16px);font-weight:650;line-height:1.25}
+#traitFields .trait-choice button.active,#traitFields .trait-matrix button.active{background:#d5eadd;border:2px solid #23734e}
+#traitFields .other-input{margin-top:7px}
+#traitFields .truss-row label{font-size:13px;margin:3px 0 4px;text-align:center}
+#traitFields .truss-row input{min-height:42px;padding:6px}
+#traitFields .trait-matrix{display:grid;gap:5px}
+#traitFields .trait-matrix-labels,#traitFields .trait-matrix-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;text-align:center}
+#traitFields .trait-matrix-labels>div{font-size:clamp(12px,3.5vw,16px);font-weight:700;padding:6px 0}
+#traitFields .trait-matrix-row button{width:100%}
+</style><script defer src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script></head><body><header><strong>🍅 番茄田間選拔記錄器 v1.5.2</strong><small>掃 QR → 查看／調查 → 選拔下一株｜離線本機資料</small></header><main>
 <section id="home"><div class="bar"><h2>田間巡查</h2><span id="dbstate" class="tag">啟動中</span></div><button id="homeScan" class="primary big">▣ 掃描品系／單株 QR</button><p class="muted">掃描既有牌可直接查看歷史紀錄；掃到品系後，可不填調查直接選拔單株。</p><label>掃不到 QR？輸入識別碼</label><div class="row"><input id="homeCode" placeholder="QR 內容／單株編號"><button id="homeOpen">開啟</button></div><div class="note" id="homeStats"></div><div class="row"><button id="homeFind">搜尋紀錄</button><button id="homeData">資料管理</button></div></section>
 <section id="detail" class="hide"><div class="bar"><h2 id="detailTitle"></h2><button id="detailBack">掃下一個</button></div><div id="detailInfo" class="note"></div><div id="quickLine" class="hide"><label>品系觀察紀錄（可留空直接選拔）</label><textarea id="quickLineText" placeholder="直接輸入這個品系的觀察，例如：生長整齊、果實大小不一致…"></textarea><button class="primary big" id="quickLineSave">儲存品系觀察</button></div><div id="detailActions"></div><h3>匯入的單株／品系調查</h3><div id="externalDetail"></div><h3>田間調查紀錄</h3><div id="detailRecords"></div></section>
 <section id="editor" class="hide"><div class="bar"><h2 id="editorTitle">新增調查</h2><button id="editorBack">返回</button></div><div id="editorInfo" class="note"></div><p id="editNotice" class="muted"></p><label>調查日期</label><input type="date" id="surveyDate"><div id="traitFields"></div><label>整體整齊度（品系）</label><div id="uniformBlock" class="choice"></div><label>調查備註／選拔原因</label><textarea id="surveyNote" placeholder="自由記錄觀察內容"></textarea><button class="primary big" id="saveSurvey">儲存這筆調查</button></section>
 <section id="scanner" class="hide"><div class="bar"><h2 id="scannerTitle">掃描 QR</h2><button id="stopScan">關閉</button></div><video id="camera" playsinline muted autoplay></video><canvas id="scanCanvas" class="hide"></canvas><p id="scanStatus" class="muted">正在啟動相機…</p><label>手動輸入 QR 內容</label><input id="scanManual" placeholder="完整 QR 識別碼"><button class="primary big" id="scanManualOK">確認識別碼</button></section>
 <section id="find" class="hide"><div class="bar"><h2>搜尋品系／單株</h2><button id="findBack">返回</button></div><input id="findInput" placeholder="輸入品系名稱、QR、單株編號"><div id="findResults"></div></section>
-<section id="data" class="hide"><div class="bar"><h2>資料管理</h2><button id="dataBack">返回</button></div><h3>匯入品系牌 CSV</h3><p class="muted">首次使用或新增製牌批次時匯入。請使用 v27 產生的「QR製牌紀錄」CSV，品系 QR 內容不是田間名稱。</p><input id="csvFile" type="file" accept=".csv,text/csv" multiple><p id="csvStatus" class="muted"></p><h3>田區圖（v5.1 JSON）</h3><p class="muted">匯入田區圖產生器的「完整備份（含 QR 製牌）」JSON。以 QR 識別碼連結選拔品系；不會覆蓋已選拔單株及調查。</p><input id="fieldmapFile" type="file" accept=".json,application/json"><p id="fieldmapStatus" class="muted"></p><button id="viewFieldmap" class="primary big">查看選拔結果田區圖</button><h3>匯入其他調查工具 JSON（v1.5.1）</h3><p class="muted">支援「番茄育種調查交換格式 v1」：果實多次調查、風味、影像分析等。尚未有固定格式的工具，須先轉換成交換格式；不會猜測未知 JSON 欄位。</p><input id="externalFile" type="file" accept=".json,application/json" multiple><p id="externalStatus" class="muted"></p><button id="externalView" class="big">查看所有匯入調查及未配對資料</button><h3>備份與還原</h3><button id="exportJSON" class="primary big">匯出完整 JSON 備份</button><label>匯入 JSON（可匯入 v1／v1.1 舊資料）</label><input id="jsonFile" type="file" accept=".json,application/json"><p class="muted">相同識別碼若資料衝突，會停止匯入，不直接覆蓋。更新程式前請先備份。</p><h3>資料狀態</h3><div id="dataStats" class="note"></div></section>
+<section id="data" class="hide"><div class="bar"><h2>資料管理</h2><button id="dataBack">返回</button></div><h3>匯入品系牌 CSV</h3><p class="muted">首次使用或新增製牌批次時匯入。請使用 v27 產生的「QR製牌紀錄」CSV，品系 QR 內容不是田間名稱。</p><input id="csvFile" type="file" accept=".csv,text/csv" multiple><p id="csvStatus" class="muted"></p><h3>田區圖（v5.1 JSON）</h3><p class="muted">匯入田區圖產生器的「完整備份（含 QR 製牌）」JSON。以 QR 識別碼連結選拔品系；不會覆蓋已選拔單株及調查。</p><input id="fieldmapFile" type="file" accept=".json,application/json"><p id="fieldmapStatus" class="muted"></p><button id="viewFieldmap" class="primary big">查看選拔結果田區圖</button><h3>匯入其他調查工具 JSON（v1.5.2）</h3><p class="muted">支援「番茄育種調查交換格式 v1」：果實多次調查、風味、影像分析等。尚未有固定格式的工具，須先轉換成交換格式；不會猜測未知 JSON 欄位。</p><input id="externalFile" type="file" accept=".json,application/json" multiple><p id="externalStatus" class="muted"></p><button id="externalView" class="big">查看所有匯入調查及未配對資料</button><h3>備份與還原</h3><button id="exportJSON" class="primary big">匯出完整 JSON 備份</button><label>匯入 JSON（可匯入 v1／v1.1 舊資料）</label><input id="jsonFile" type="file" accept=".json,application/json"><p class="muted">相同識別碼若資料衝突，會停止匯入，不直接覆蓋。更新程式前請先備份。</p><h3>資料狀態</h3><div id="dataStats" class="note"></div></section>
 <section id="externalPage" class="hide"><div class="bar"><h2>匯入調查總覽</h2><button id="externalBack">返回</button></div><div id="externalSummary" class="note"></div><div id="externalList"></div></section>
 <section id="fieldmap" class="hide"><div class="bar"><h2>選拔結果田區圖</h2><button id="mapBack">返回</button></div><div id="mapSummary" class="note"></div><div class="row"><button id="mapPrint" class="primary">列印／存成 PDF</button><button id="mapExcel">匯出 Excel 可開啟檔案</button></div><p class="muted">依原田區圖的畦、前後區、左右行及順序排列；未選拔品系也會顯示。綠色代表已有選拔單株。</p><div id="mapRows"></div></section>
 </main><nav id="nav" class="sticky"><button id="navScan" class="primary">▣ 掃碼</button><button id="navFind">搜尋</button><button id="navData">資料管理</button></nav><div id="toast" role="status"></div><dialog id="unsavedDialog"><h2>有尚未儲存的調查</h2><p>離開這個畫面前，要儲存剛剛的變動嗎？</p><div class="row"><button id="dirtyCancel">繼續編輯</button><button id="dirtyDiscard" class="warn">不儲存</button></div><button id="dirtySave" class="primary big">儲存並離開</button></dialog><script>
@@ -44,16 +56,110 @@ function renderDetail(){let s=subjects[active];if(!s)return show('home');$('deta
 $('detailInfo').innerHTML=s.kind==='line'?`<b>${escapeHTML(lineTitle(s))}</b><div class="sub">QR：${escapeHTML(s.id)}</div><div class="sub">雜交組合：${escapeHTML(s.pedigree||'未填')}　期作：${escapeHTML(s.season||'未填')}</div>`:`<b>${escapeHTML(s.id)}</b><div class="sub">來源品系：${escapeHTML(source?lineTitle(source):'未指定')}</div><div class="sub">來源 QR：${escapeHTML(s.sourceKey?.slice(5)||'未指定')}</div>`;
 $('quickLine').classList.toggle('hide',s.kind!=='line');$('quickLineText').value='';lineBaseline='';let actions=$('detailActions');actions.innerHTML='';const button=(text,fn,primary=false)=>{let b=document.createElement('button');b.className=(primary?'primary ':'')+'big';b.textContent=text;b.onclick=fn;actions.append(b)};if(s.kind==='plant')button('＋ 新增一筆調查',()=>openEditor(null),true);else button('＋ 詳細性狀調查（選填）',()=>openEditor(null));if(s.kind==='line'){button('▣ 選拔單株（掃單株 QR）',()=>startScan('select'));let plantsHere=Object.values(subjects).filter(p=>p.kind==='plant'&&p.sourceKey===active);if(plantsHere.length){let d=document.createElement('div');d.className='note';d.textContent='已選拔：'+plantsHere.map(p=>p.id).join('、');actions.append(d);let holder=document.createElement('div');holder.className='note';holder.innerHTML='<b>單株快速查看（不離開品系）</b><p class="muted">點選單株展開／收起紀錄，可連續查看其他單株；不會進入編輯頁。</p>';actions.append(holder);
 for(let p of plantsHere){let b=document.createElement('button');b.textContent='▸ '+p.id+'（展開紀錄）';b.style.width='100%';let preview=document.createElement('div');preview.className='plant-preview hide';b.onclick=()=>{let hidden=preview.classList.toggle('hide');b.textContent=(hidden?'▸ ':'▾ ')+p.id+(hidden?'（展開紀錄）':'（收起紀錄）');if(!hidden)renderPlantPreview(p,preview)};holder.append(b,preview)}}}else{button('▣ 選拔同品系下一株',()=>{let src=s.sourceKey;if(!src||!subjects[src])return toast('找不到來源品系，請重新掃描品系牌');active=src;startScan('select')})}button('▣ 掃描其他品系／單株',()=>startScan('any'));
-renderExternalDetail(active);let arr=surveyFor(active),box=$('detailRecords');box.innerHTML='';if(!arr.length)box.innerHTML='<p class="muted">尚無調查紀錄。可以直接選拔單株，不必先記錄品系性狀。</p>';for(let rec of arr){let d=document.createElement('div');d.className='item';let traits=Object.entries(rec.traits||{}).filter(([k,v])=>v!==''&&v!==null&&v!==undefined).map(([k,v])=>`${specs.find(z=>z[0]===k)?.[1]||k}：${v}`).slice(0,6).join('、');d.innerHTML=`<b>${escapeHTML(rec.date||'未填日期')}</b> <span class="tag">${rec.revisions?.length?'已修正 '+rec.revisions.length+' 次':'原始調查'}</span><div class="sub">建立：${escapeHTML(rec.created.replace('T',' ').slice(0,16))}</div><div class="muted">${escapeHTML(traits||'未填性狀')}</div><div class="muted">${escapeHTML(rec.note||'')}</div>`;let b=document.createElement('button');b.textContent='查看／修正此筆';b.onclick=()=>openEditor(rec.id);d.append(b);if(rec.revisions?.length){let h=document.createElement('button');h.textContent='修正歷史';h.onclick=()=>{let box=document.createElement('div');box.className='history';for(let v of rec.revisions){let x=document.createElement('div');x.className='item';x.innerHTML=`<b>修改前版本</b><div class="sub">修正時間：${escapeHTML(v.at)}</div><pre style="white-space:pre-wrap;overflow-wrap:anywhere">${escapeHTML(JSON.stringify(v.before,null,2))}</pre>`;box.append(x)}d.append(box);h.disabled=true};d.append(h)}box.append(d)}show('detail')}
+renderExternalDetail(active);let arr=surveyFor(active),box=$('detailRecords');box.innerHTML='';if(!arr.length)box.innerHTML='<p class="muted">尚無調查紀錄。可以直接選拔單株，不必先記錄品系性狀。</p>';for(let rec of arr){let d=document.createElement('div');d.className='item';let traits=Object.entries(rec.traits||{}).filter(([k,v])=>v!==''&&v!==null&&v!==undefined).map(([k,v])=>`${specs.find(z=>z[0]===k)?.[1]||k}：${k==='growth'?({D:'停心',H:'半停心',I:'非停心'}[v]||v):v}`).slice(0,6).join('、');d.innerHTML=`<b>${escapeHTML(rec.date||'未填日期')}</b> <span class="tag">${rec.revisions?.length?'已修正 '+rec.revisions.length+' 次':'原始調查'}</span><div class="sub">建立：${escapeHTML(rec.created.replace('T',' ').slice(0,16))}</div><div class="muted">${escapeHTML(traits||'未填性狀')}</div><div class="muted">${escapeHTML(rec.note||'')}</div>`;let b=document.createElement('button');b.textContent='查看／修正此筆';b.onclick=()=>openEditor(rec.id);d.append(b);if(rec.revisions?.length){let h=document.createElement('button');h.textContent='修正歷史';h.onclick=()=>{let box=document.createElement('div');box.className='history';for(let v of rec.revisions){let x=document.createElement('div');x.className='item';x.innerHTML=`<b>修改前版本</b><div class="sub">修正時間：${escapeHTML(v.at)}</div><pre style="white-space:pre-wrap;overflow-wrap:anywhere">${escapeHTML(JSON.stringify(v.before,null,2))}</pre>`;box.append(x)}d.append(box);h.disabled=true};d.append(h)}box.append(d)}show('detail')}
 function renderPlantPreview(p,container){container.innerHTML='';let records=surveyFor(subjectKey('plant',p.id)),external=externalEntriesFor(subjectKey('plant',p.id));let info=document.createElement('p');info.className='muted';info.textContent='田間調查 '+records.length+' 筆｜外部調查 '+external.length+' 筆';container.append(info);
-for(let r of records){let item=document.createElement('div');item.className='item';let traits=Object.entries(r.traits||{}).filter(([k,v])=>v!==''&&v!=null).map(([k,v])=>(specs.find(z=>z[0]===k)?.[1]||k)+'：'+v).join('、');item.textContent=(r.date||'未填日期')+'｜'+(traits||'未填性狀')+(r.note?'｜'+r.note:'');container.append(item)}
+for(let r of records){let item=document.createElement('div');item.className='item';let traits=Object.entries(r.traits||{}).filter(([k,v])=>v!==''&&v!=null).map(([k,v])=>(specs.find(z=>z[0]===k)?.[1]||k)+'：'+(k==='growth'?({D:'停心',H:'半停心',I:'非停心'}[v]||v):v)).join('、');item.textContent=(r.date||'未填日期')+'｜'+(traits||'未填性狀')+(r.note?'｜'+r.note:'');container.append(item)}
 for(let r of external)container.append(externalCard(r));
 if(!records.length&&!external.length){let empty=document.createElement('p');empty.className='muted';empty.textContent='這株尚無調查紀錄';container.append(empty)}
 let btn=document.createElement('button');btn.textContent='進入 '+p.id+' 詳細頁（可新增／編輯）';btn.onclick=()=>openSubject('plant',p.id);container.append(btn)}
-function renderTraits(){let area=$('traitFields');area.innerHTML='';for(let [key,title,opts] of specs){let h=document.createElement('h3');h.textContent=title;area.append(h);let group=document.createElement('div');group.className='choice';for(let option of opts){let b=document.createElement('button');b.type='button';b.textContent=option;b.classList.toggle('active',form[key]===option);b.onclick=()=>{form[key]=form[key]===option?'':option;renderTraits()};group.append(b)}area.append(group)}let h=document.createElement('h3');h.textContent='每串果數（未調查請留空）';area.append(h);let row=document.createElement('div');row.className='three';for(let i=1;i<=3;i++){let c=document.createElement('div');let l=document.createElement('label');l.textContent='第 '+i+' 串';let inp=document.createElement('input');inp.type='number';inp.min='0';inp.inputMode='numeric';inp.value=form['truss'+i]??'';inp.oninput=()=>form['truss'+i]=inp.value;c.append(l,inp);row.append(c)}area.append(row)}
-function openEditor(id){editing=id;let s=subjects[active],r=id?surveys[id]:null;form=clone(r?.traits||{});$('editorTitle').textContent=id?'修正既有調查':'新增一筆調查';$('editorInfo').textContent=(s.kind==='line'?'品系｜'+lineTitle(s):'單株｜'+s.id);$('editNotice').textContent=id?'這是修正原有紀錄：儲存後會保留修改前版本與修改時間。':'這是全新調查：即使同一天已調查過，仍會新增獨立紀錄。';$('surveyDate').value=r?.date||today();$('surveyNote').value=r?.note||'';renderTraits();$('uniformBlock').innerHTML='';$('uniformBlock').parentElement.querySelector('label[for]');for(let val of ['整齊','普通','不整齊']){let b=document.createElement('button');b.textContent=val;b.classList.toggle('active',form.uniformity===val);b.onclick=()=>{form.uniformity=form.uniformity===val?'':val;openUniform()};$('uniformBlock').append(b)}$('uniformBlock').previousElementSibling.classList.toggle('hide',s.kind!=='line');$('uniformBlock').classList.toggle('hide',s.kind!=='line');show('editor');editorBaseline=editorSnapshot()}
+// 調查版面 v1.5.2：緊湊格狀按鈕，保留舊資料欄位與既有代碼。
+function renderTraits(){
+  const area=$('traitFields');area.innerHTML='';
+  const section=(title)=>{let h=document.createElement('h3');h.className='trait-heading';h.textContent=title;area.append(h)};
+  const choices=(key,options,cols,labels=null)=>{
+    let group=document.createElement('div');group.className='trait-choice';group.style.setProperty('--cols',cols);
+    for(let [i,value] of options.entries()){
+      let b=document.createElement('button');b.type='button';
+      b.textContent=labels?.[i]??value;
+      b.classList.toggle('active',form[key]===value||(value==='其他'&&String(form[key]||'').startsWith('其他：')));
+      b.setAttribute('aria-pressed',form[key]===value?'true':'false');
+      b.onclick=()=>{form[key]=form[key]===value?'':value;renderTraits()};
+      group.append(b);
+    }
+    area.append(group);
+  };
+  const otherInput=(key,label,otherName='其他')=>{
+    if(form[key]!==otherName && !String(form[key]||'').startsWith('其他：'))return;
+    let input=document.createElement('input');input.className='other-input';
+    input.placeholder=label;
+    input.setAttribute('aria-label',label);
+    input.value=String(form[key]||'').startsWith('其他：')?String(form[key]).slice(3):'';
+    input.oninput=()=>{form[key]=input.value.trim()?'其他：'+input.value:'其他'};
+    area.append(input);
+  };
+  const oldGrowth={D:'停心',H:'半停心',I:'非停心','停心 D':'停心','半停心 H':'半停心','非停心 I':'非停心'};
+  const growthValues=['停心 D','半停心 H','非停心 I'];
+  section('生長型');
+  choices('growth',growthValues,3,['停心','半停心','非停心']);
+  // 原資料仍使用「停心 D／半停心 H／非停心 I」；顯示不帶代碼。
+  section('花序');
+  choices('inflorescence',['總狀 R','複總狀 C'],2,['總狀','複總狀']);
+  section('成熟果色');
+  choices('color',['紅','橙','黃','綠','紫黑','粉','白','棕','其他'],4);
+  otherInput('color','請輸入其他成熟果色');
+  section('斑紋');
+  choices('stripe',['無','紅','綠','黃','其他'],4);
+  otherInput('stripe','請輸入其他斑紋');
+  section('果型');
+  choices('shape',['扁平型','微扁形','球形','高球形','長筒形','橢圓形','心形','倒卵形','卵形','梨型'],5);
+  section('萼片大小');
+  choices('calyx',['大','中','小'],3);
+  section('每串果數（未調查請留空）');
+  let row=document.createElement('div');row.className='three truss-row';
+  for(let i=1;i<=3;i++){
+    let c=document.createElement('div'),l=document.createElement('label');
+    l.textContent='第 '+i+' 串';let inp=document.createElement('input');
+    inp.type='number';inp.min='0';inp.inputMode='numeric';inp.value=form['truss'+i]??'';
+    inp.oninput=()=>form['truss'+i]=inp.value;
+    c.append(l,inp);row.append(c);
+  }
+  area.append(row);
+  function matrix(keys,titles,rows){
+    let matrix=document.createElement('div');matrix.className='trait-matrix';
+    let heading=document.createElement('div');heading.className='trait-matrix-labels';
+    for(let t of titles){let cell=document.createElement('div');cell.textContent=t;heading.append(cell)}
+    matrix.append(heading);
+    for(let value of rows){
+      let line=document.createElement('div');line.className='trait-matrix-row';
+      for(let key of keys){
+        let b=document.createElement('button');b.type='button';b.textContent=value;
+        b.classList.toggle('active',form[key]===value);
+        b.setAttribute('aria-label',titles[keys.indexOf(key)]+'：'+value);
+        b.setAttribute('aria-pressed',form[key]===value?'true':'false');
+        b.onclick=()=>{form[key]=form[key]===value?'':value;renderTraits()};
+        line.append(b);
+      }
+      matrix.append(line);
+    }
+    area.append(matrix);
+  }
+  section('病徵');
+  matrix(['tylcv','wilt','spot','blight'],['捲葉','青枯','斑點病','疫病'],['有','無']);
+  section('果實外觀');
+  matrix(['ringCrack','radialCrack','sunscald','window'],['環裂','縱裂','日燒','開窗'],['嚴重','有','無']);
+  section('果實表現');
+  // 舊版以「轉色不好」「果美」分別記錄有／無，沿用原欄位以免舊紀錄失聯。
+  // 「轉色好」按鈕寫入 uneven=無；「轉色不好」寫入 uneven=有。
+  let performance=document.createElement('div');performance.className='trait-choice';performance.style.setProperty('--cols',3);
+  const perf=[
+    {label:'轉色好',key:'uneven',value:'無'},
+    {label:'轉色不好',key:'uneven',value:'有'},
+    {label:'果美',key:'beautiful',value:'有'}
+  ];
+  for(let p of perf){
+    let b=document.createElement('button');b.type='button';b.textContent=p.label;
+    b.classList.toggle('active',form[p.key]===p.value);
+    b.setAttribute('aria-pressed',form[p.key]===p.value?'true':'false');
+    b.onclick=()=>{form[p.key]=form[p.key]===p.value?'':p.value;renderTraits()};
+    performance.append(b);
+  }
+  area.append(performance);
+}
+
+function openEditor(id){editing=id;let s=subjects[active],r=id?surveys[id]:null;form=clone(r?.traits||{});if(['D','H','I'].includes(form.growth))form.growth=({D:'停心 D',H:'半停心 H',I:'非停心 I'})[form.growth];$('editorTitle').textContent=id?'修正既有調查':'新增一筆調查';$('editorInfo').textContent=(s.kind==='line'?'品系｜'+lineTitle(s):'單株｜'+s.id);$('editNotice').textContent=id?'這是修正原有紀錄：儲存後會保留修改前版本與修改時間。':'這是全新調查：即使同一天已調查過，仍會新增獨立紀錄。';$('surveyDate').value=r?.date||today();$('surveyNote').value=r?.note||'';renderTraits();$('uniformBlock').innerHTML='';$('uniformBlock').parentElement.querySelector('label[for]');for(let val of ['整齊','普通','不整齊']){let b=document.createElement('button');b.textContent=val;b.classList.toggle('active',form.uniformity===val);b.onclick=()=>{form.uniformity=form.uniformity===val?'':val;openUniform()};$('uniformBlock').append(b)}$('uniformBlock').previousElementSibling.classList.toggle('hide',s.kind!=='line');$('uniformBlock').classList.toggle('hide',s.kind!=='line');show('editor');editorBaseline=editorSnapshot()}
 function openUniform(){for(let b of $('uniformBlock').querySelectorAll('button'))b.classList.toggle('active',b.textContent===form.uniformity)}
-async function saveSurveyRecord(){let date=$('surveyDate').value,note=$('surveyNote').value;if(!date)return toast('請填調查日期');if(editing){let r=surveys[editing],before={date:r.date,traits:clone(r.traits),note:r.note};r.revisions=r.revisions||[];r.revisions.push({at:now(),before});r.date=date;r.traits=clone(form);r.note=note;r.updated=now()}else{let id=uuid();surveys[id]={id,subjectKey:active,date,traits:clone(form),note,created:now(),updated:now(),revisions:[]}}await persist();toast(editing?'已修正，原版本保留':'已新增一筆調查');refreshStats();editorBaseline='';renderDetail()}
+function traitsForStorage(values){let v=clone(values);const codes={'停心 D':'D','半停心 H':'H','非停心 I':'I'};if(codes[v.growth])v.growth=codes[v.growth];return v}
+async function saveSurveyRecord(){let date=$('surveyDate').value,note=$('surveyNote').value;if(!date)return toast('請填調查日期');if(editing){let r=surveys[editing],before={date:r.date,traits:clone(r.traits),note:r.note};r.revisions=r.revisions||[];r.revisions.push({at:now(),before});r.date=date;r.traits=traitsForStorage(form);r.note=note;r.updated=now()}else{let id=uuid();surveys[id]={id,subjectKey:active,date,traits:traitsForStorage(form),note,created:now(),updated:now(),revisions:[]}}await persist();toast(editing?'已修正，原版本保留':'已新增一筆調查');refreshStats();editorBaseline='';renderDetail()}
 $('saveSurvey').onclick=saveSurveyRecord;
 function handleCode(raw,mode=scanMode){let code=String(raw||'').trim();if(!code)return toast('請輸入 QR 內容');if(mode==='select'&&lines[code]){let t=Date.now();if(lastInvalidCode!==code||t-lastInvalidAt>4000){$('scanStatus').textContent='⚠️ 掃到品系牌，請改掃單株 QR（相機持續開啟）';lastInvalidCode=code;lastInvalidAt=t}return}stopCamera();if(mode==='select'){let src=selectionSource;if(!src?.startsWith('line:'))return toast('請先掃描來源品系');if(lines[code])return toast('掃到品系牌，請改掃單株牌');let existing=getSubject('plant',code);if(existing){if(existing.sourceKey!==src){show('detail');return toast('⚠️ 此單株已屬於其他品系，已阻止重複配對')}openSubject('plant',code);return}ensureSubject('plant',code,{sourceKey:src});persist().then(()=>{refreshStats();openSubject('plant',code);toast('已建立單株與來源品系關係')});return}
 if(lines[code]){ensureSubject('line',code,{name:lines[code].name,pedigree:lines[code].pedigree,season:lines[code].season,location:lines[code].location});persist().then(()=>{refreshStats();openSubject('line',code)});return}if(getSubject('plant',code)){openSubject('plant',code);return}if(getSubject('line',code)){openSubject('line',code);return}show('home');toast('找不到此 QR。新品系請先匯入 CSV；新單株請從來源品系按「選拔單株」')}
